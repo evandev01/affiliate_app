@@ -52,6 +52,9 @@ const getProducts = asyncHandler(async (req, res) => {
   }
 })
 
+// @desc    Get product
+// @route   GET '/product/:id'
+// @access  public
 const getProduct = asyncHandler(async (req, res) => {
   const _id = req.params.id
 
@@ -69,6 +72,9 @@ const getProduct = asyncHandler(async (req, res) => {
   }
 })
 
+// @desc    Update product
+// @route   PUT '/product/:id'
+// @access  admin
 const updateProduct = asyncHandler(async (req, res) => {
   const { name, image, link, desc, article, video } = req.body
   const _id = req.params.id
@@ -98,6 +104,9 @@ const updateProduct = asyncHandler(async (req, res) => {
   }
 })
 
+// @desc    Delete product
+// @route   DELETE '/product/:id'
+// @access  admin
 const deleteProduct = asyncHandler(async (req, res) => {
   const _id = req.params.id
 
