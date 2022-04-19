@@ -1,6 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import thunk from 'redux-thunk'
-import { composeWithDevTools } from 'redux-devtools-extension'
+import {
+  productAddReducer,
+  productDeleteReducer,
+  productDetailsReducer,
+  productListReducer,
+  productUpdateReducer,
+} from './reducers/productReducers'
+// import { composeWithDevTools } from 'redux-devtools-extension'
 import {
   userLoginReducer,
   userRegisterReducer,
@@ -18,6 +25,12 @@ const reducer = {
   userList: userListReducer,
   userDelete: userDeleteReducer,
   userUpdate: userUpdateReducer,
+  // Product
+  productAdd: productAddReducer,
+  productList: productListReducer,
+  productDetails: productDetailsReducer,
+  productUpdate: productUpdateReducer,
+  productDelete: productDeleteReducer,
 }
 
 const userInfoFromStorage = localStorage.getItem('userInfo')
@@ -34,6 +47,7 @@ const store = configureStore({
   reducer,
   preLoadedState,
   middleware,
+  // composeWithDevTools,
 })
 
 export default store
