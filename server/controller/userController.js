@@ -31,7 +31,7 @@ const login = asyncHandler(async (req, res) => {
         })
       } else {
         console.log('problems')
-        res.status(401).json({ msg: 'Invalid email or password' })
+        res.status(401).json({ message: 'Invalid email or password' })
         throw new Error('Invalid email or password')
       }
     } catch (error) {
@@ -50,7 +50,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const userExists = await User.findOne({ email })
 
   if (userExists) {
-    res.status(400).json({ msg: 'User already exists' })
+    res.status(400).json({ message: 'User already exists' })
     throw new Error('User already exists')
   } else {
     try {
@@ -71,7 +71,7 @@ const registerUser = asyncHandler(async (req, res) => {
           token: generateToken(user._id),
         })
       } else {
-        res.status(400).json({ msg: 'Invalid user data' })
+        res.status(400).json({ message: 'Invalid user data' })
         throw new Error('Invalid user data')
       }
     } catch (err) {
