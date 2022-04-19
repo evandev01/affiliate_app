@@ -4,6 +4,7 @@ import { Container } from 'react-bootstrap'
 import Home from './screens/Home'
 import './App.css'
 import Header from './components/Header'
+import Login from './screens/Login'
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <Header />
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/login' element={<Login />} />
         </Routes>
       </Container>
     </Router>
