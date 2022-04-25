@@ -29,8 +29,8 @@ const addProduct = asyncHandler(async (req, res) => {
       res.status(400).json({ message: 'Product not found' })
       throw new Error('Product not found')
     }
-  } catch (err) {
-    res.json(err)
+  } catch (error) {
+    res.json(error)
   }
 })
 
@@ -47,8 +47,8 @@ const getProducts = asyncHandler(async (req, res) => {
       res.status(404).json({ message: 'Product not found' })
       throw new Error('Product not found')
     }
-  } catch (err) {
-    res.json(err)
+  } catch (error) {
+    res.json(error)
   }
 })
 
@@ -67,8 +67,8 @@ const getProduct = asyncHandler(async (req, res) => {
       res.status(404).json({ message: 'Product not found' })
       throw new Error('Product not found')
     }
-  } catch (err) {
-    res.json(err)
+  } catch (error) {
+    res.json(error)
   }
 })
 
@@ -83,12 +83,12 @@ const updateProduct = asyncHandler(async (req, res) => {
     const product = await Product.findById({ _id })
 
     if (product) {
-      product.name = name || product.name
-      product.image = image || product.image
-      product.link = link || product.link
-      product.desc = desc || product.desc
-      product.article = article || product.article
-      product.video = video || product.video
+      product.name = name
+      product.image = image
+      product.link = link
+      product.desc = desc
+      product.article = article
+      product.video = video
 
       const updatedProduct = await product.save()
 
@@ -99,8 +99,8 @@ const updateProduct = asyncHandler(async (req, res) => {
       res.status(404).json({ message: 'Product not found' })
       throw new Error('Product not found')
     }
-  } catch (err) {
-    res.json(err)
+  } catch (error) {
+    res.json(error)
   }
 })
 
@@ -120,8 +120,8 @@ const deleteProduct = asyncHandler(async (req, res) => {
       res.status(404).json({ message: 'Product not found' })
       throw new Error('Product not found')
     }
-  } catch (err) {
-    res.json(err)
+  } catch (error) {
+    res.json(error)
   }
 })
 

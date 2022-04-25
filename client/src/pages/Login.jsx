@@ -2,28 +2,42 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { Container, Row, Col, Button, Form } from 'react-bootstrap'
-import { login } from '../actions/userActions'
+import { login, reset } from '../features/auth/authSlice'
 
 const Login = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [formData, setFormData] = useState({ email: '', password: '' })
+  const { email, password } = formData
 
   const navigate = useNavigate()
-
   const dispatch = useDispatch()
 
-  const userLogin = useSelector(state => state.userLogin)
-  const { userInfo } = userLogin
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    state => state.auth
+  )
 
   useEffect(() => {
-    if (userInfo) {
+    if (isSuccess || user) {
       navigate('/')
     }
-  }, [userInfo, navigate])
+    dispatch(reset())
+  }, [user, isSuccess, dispatch, navigate])
+
+  const changeHandler = e => {
+    setFormData(prevState => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }))
+  }
 
   const submitHandler = e => {
     e.preventDefault()
-    dispatch(login(email, password))
+
+    const userData = {
+      email,
+      password,
+    }
+
+    dispatch(login(userData))
   }
 
   return (
@@ -31,13 +45,16 @@ const Login = () => {
       <Container>
         <Row>
           <Col>
-            <Form>
+            <Form onSubmit={e => submitHandler(e)}>
               <Form.Group className='mb-3' controlId='formBasicEmail'>
                 <Form.Label>Email address</Form.Label>
                 <Form.Control
                   type='email'
+                  id='email'
+                  name='email'
                   placeholder='Enter email'
-                  onChange={e => setEmail(e.target.value)}
+                  onChange={changeHandler}
+                  value={email}
                 />
                 <Form.Text className='text-muted'>
                   We'll never share your email with anyone else.
@@ -48,18 +65,17 @@ const Login = () => {
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                   type='password'
+                  id='password'
+                  name='password'
                   placeholder='Password'
-                  onChange={e => setPassword(e.target.value)}
+                  onChange={changeHandler}
+                  value={password}
                 />
               </Form.Group>
               <Form.Group className='mb-3' controlId='formBasicCheckbox'>
                 <Form.Check type='checkbox' label='Check me out' />
               </Form.Group>
-              <Button
-                variant='primary'
-                type='submit'
-                onClick={e => submitHandler(e)}
-              >
+              <Button variant='primary' type='submit'>
                 Submit
               </Button>
             </Form>

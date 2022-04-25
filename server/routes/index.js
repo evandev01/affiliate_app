@@ -1,8 +1,8 @@
 const router = require('express').Router()
-const user = require('./userRoutes')
-const product = require('./productRoutes')
+const users = require('./userRoutes')
+const products = require('./productRoutes')
 
-router.use('/user', user)
-router.use('/product', product)
+router.use('/api/users', users)
+router.use('/api/products', products)
 
 module.exports = router
