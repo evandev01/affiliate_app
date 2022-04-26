@@ -1,0 +1,26 @@
+{
+  "name": "affiliate_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evandev01/affiliate_app.git"
+  },
+  "author": "evanDev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/evandev01/affiliate_app/issues"
+  },
+  "homepage": "https://github.com/evandev01/affiliate_app#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.0",
+    "if-env": "^1.0.4",
+    "mongoose": "^6.3.1"
+  }
+}
