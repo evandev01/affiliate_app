@@ -1,29 +1,43 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { deleteProduct, getProducts } from '../features/product/productSlice'
+import {
+  deleteProduct,
+  getProducts,
+  reset,
+} from '../features/product/productSlice'
 
 const Home = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  const { products, successDelete, loading, isError, message } = useSelector(
-    state => state.products
-  )
+  const {
+    products,
+    successDelete,
+    loading,
+    errorProducts,
+    errorDelete,
+    message,
+  } = useSelector(state => state.products)
 
   const { user } = useSelector(state => state.auth)
 
   useEffect(() => {
     dispatch(getProducts())
+    // if (successDelete) {
+    //   alert(message)
+    // }
   }, [dispatch, successDelete])
 
   return (
     <>
       <Container>
         <Row>
-          {isError && <Message>{`${message}`}</Message>}
+          {errorProducts ||
+            (errorDelete && <Message variant='danger'>{message}</Message>)}
           {loading && <Loader />}
           {products &&
             products.map((product, index) => (
@@ -44,8 +58,12 @@ const Home = () => {
                     <Card.Footer>
                       <Row>
                         <Col>
-                          <a
-                            href={`/edit/${product._id}`}
+                          <Button
+                            onClick={e => {
+                              e.preventDefault()
+                              dispatch(reset())
+                              navigate(`/edit/${product._id}`)
+                            }}
                             className='btn btn-primary p-2 mt-2'
                             style={{
                               display: 'block',
@@ -54,7 +72,7 @@ const Home = () => {
                             }}
                           >
                             Edit
-                          </a>
+                          </Button>
 
                           <Button
                             variant='warning'

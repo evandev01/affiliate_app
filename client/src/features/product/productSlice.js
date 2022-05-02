@@ -170,6 +170,7 @@ export const productSlice = createSlice({
       .addCase(deleteProduct.fulfilled, (state, action) => {
         state.loading = false
         state.successDelete = true
+        state.message = action.payload
       })
       .addCase(deleteProduct.rejected, (state, action) => {
         state.loading = false

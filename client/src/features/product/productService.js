@@ -42,18 +42,14 @@ const getProductById = async (productId, token) => {
 }
 
 // UPDATE PRODUCT
-const updateProduct = async (productData, token) => {
+const updateProduct = async (product, token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   }
 
-  const response = await axios.put(
-    API_URL + productData._id,
-    productData,
-    config
-  )
+  const response = await axios.put(API_URL + product._id, product, config)
 
   return response.data
 }
