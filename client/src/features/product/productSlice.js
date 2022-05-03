@@ -117,7 +117,7 @@ export const productSlice = createSlice({
       })
       .addCase(addProduct.fulfilled, (state, action) => {
         state.loading = false
-        state.isCreate = true
+        state.successCreate = true
         state.products.push(action.payload)
       })
       .addCase(addProduct.rejected, (state, action) => {

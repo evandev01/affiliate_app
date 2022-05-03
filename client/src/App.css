@@ -3,3 +3,12 @@
   background-color: rgb(66, 66, 233);
   margin-top: 20px;
 }
+
+/* body {
+  background-image: url('./assets/fireworks.jpg');
+  height: 500px;
+
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+} */

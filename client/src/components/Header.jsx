@@ -1,7 +1,21 @@
-import React from 'react'
-import { Nav, Navbar, Container, NavDropdown } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+import {
+  Nav,
+  Navbar,
+  Container,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button,
+} from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
+  const [keyword, setKeyword] = useState('')
+
+  const { user } = useSelector(state => state.auth)
+
   return (
     <header className='py-3 my-3'>
       <Navbar bg='light' expand='lg'>
@@ -25,7 +39,29 @@ const Header = () => {
                   Gift Ideas For Her
                 </NavDropdown.Item>
               </NavDropdown>
+              {user && user.isAdmin && (
+                <NavDropdown title='Admin'>
+                  <NavDropdown.Item href='/edit'>Add Product</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href='/edit'>
+                    Edit Products
+                  </NavDropdown.Item>
+                </NavDropdown>
+              )}
             </Nav>
+            <Form className='d-flex'>
+              <FormControl
+                type='search'
+                placeholder='Search'
+                className='me-2'
+                aria-label='Search'
+                onChange={e => setKeyword(e.target.value)}
+                value={keyword}
+              />
+              <Link to={`/search/${keyword}`}>
+                <Button variant='outline-success'>Search</Button>
+              </Link>
+            </Form>
           </Navbar.Collapse>
         </Container>
       </Navbar>

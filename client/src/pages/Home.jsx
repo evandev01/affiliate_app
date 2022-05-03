@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { Container, Row, Col, Card, Button } from 'react-bootstrap'
+import { Container, Row, Col, Card, Button, Image } from 'react-bootstrap'
+import Fireworks from '../assets/fireworks.jpg'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import {
@@ -27,34 +28,30 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getProducts())
-    // if (successDelete) {
-    //   alert(message)
-    // }
   }, [dispatch, successDelete])
 
   return (
-    <>
-      <Container>
-        <Row>
+    <div>
+      <Container style={{ background: 'none' }}>
+        <Row className='text-center'>
           {errorProducts ||
             (errorDelete && <Message variant='danger'>{message}</Message>)}
           {loading && <Loader />}
           {products &&
             products.map((product, index) => (
-              <Col key={index} className='text-center p-1'>
+              <Col key={index} className='text-center p-2 m-2'>
                 <Card style={{ width: '18rem', height: 'fit-content' }}>
                   <Card.Img variant='top' src={product.image} />
                   <Card.Body>
                     <Card.Title>{product.name}</Card.Title>
                     <Card.Text>{product.desc}</Card.Text>
                   </Card.Body>
-                  <Col className='text-center' md={6}>
+                  <Col className='text-center'>
                     <Link to={product.link}>
                       <Card.Text>{product.desc}</Card.Text>
                     </Link>
                   </Col>
                   {user && user.isAdmin && (
-                    // <div className='d-grid gap-2'>
                     <Card.Footer>
                       <Row>
                         <Col>
@@ -92,14 +89,13 @@ const Home = () => {
                         </Col>
                       </Row>
                     </Card.Footer>
-                    // </div>
                   )}
                 </Card>
               </Col>
             ))}
         </Row>
       </Container>
-    </>
+    </div>
   )
 }
 
