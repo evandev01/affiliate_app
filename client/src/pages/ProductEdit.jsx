@@ -1,44 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
-import { Container, Row, Col, Button, Form } from 'react-bootstrap'
+import { useParams } from 'react-router-dom'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { storage } from '../firebase/config'
-import {
-  addProduct,
-  getProductById,
-  reset,
-  updateProduct,
-} from '../features/product/productSlice'
+import { getProductById } from '../features/product/productSlice'
 import ProductForm from '../components/ProductForm'
 
 const ProductEdit = () => {
   const { id } = useParams()
   const productId = id
   let myRef = React.createRef()
-  const [formData, setFormData] = useState({
-    name: '',
-    link: '',
-    desc: '',
-    article: '',
-    video: '',
-  })
-  const { name, link, desc, article, video } = formData
-
+  const [progress, setProgress] = useState(0)
   const [url, setUrl] = useState('')
   const [imageError, setImageError] = useState('')
-  const [progress, setProgress] = useState(0)
 
-  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const {
     product,
     successProduct,
-    successCreate,
-    successUpdate,
     loading,
     errorProduct,
     errorCreate,
@@ -47,26 +29,10 @@ const ProductEdit = () => {
   } = useSelector(state => state.products)
 
   useEffect(() => {
-    if (productId && !product) {
+    if (productId && !successProduct) {
       dispatch(getProductById(productId))
     }
-  }, [
-    dispatch,
-    navigate,
-    productId,
-    product,
-    successCreate,
-    successUpdate,
-    successProduct,
-    myRef,
-  ])
-
-  const changeHandler = e => {
-    setFormData(prevState => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }))
-  }
+  }, [dispatch, productId, successProduct])
 
   const types = ['image/png', 'image/jpeg', 'image/jpg']
 
@@ -100,17 +66,6 @@ const ProductEdit = () => {
     )
   }
 
-  const clearForm = () => {
-    setFormData({
-      name: '',
-      link: '',
-      desc: '',
-      article: '',
-      video: '',
-    })
-    setUrl('')
-  }
-
   return (
     <>
       {loading ? (
@@ -122,9 +77,7 @@ const ProductEdit = () => {
       )}
       <ProductForm
         product={product ? product : null}
-        onChange={changeHandler}
         onImageChange={imageChangeHandler}
-        onUpload={uploadFileHandler}
         url={url}
         setUrl={setUrl}
         myRef={myRef}
@@ -132,124 +85,6 @@ const ProductEdit = () => {
         imageError={imageError}
       />
     </>
-
-    // <>
-    //   <Container>
-    //     <Row>
-    //       {loading && <Loader />}
-    //       {errorProduct ||
-    //         errorUpdate ||
-    //         (errorCreate && <Message variant='danger'>{message}</Message>)}
-    //       <Col>
-    //         <Form onSubmit={submitHandler}>
-    //           <Form.Group className='mb-3'>
-    //             <Form.Label>Product Name</Form.Label>
-    //             <Form.Control
-    //               type='text'
-    //               name='name'
-    //               placeholder='Enter product name'
-    //               onChange={changeHandler}
-    //               value={
-    //                 product ? product.name : name ? name : name === '' && name
-    //               }
-    //             />
-    //           </Form.Group>
-    //           <Form.Group controlId='image' className='mb-4 text-center'>
-    //             <Form.Label style={{ fontWeight: 'bold' }}>Image</Form.Label>
-    //             <Form.Control
-    //               type='text'
-    //               placeholder='Enter Image URL'
-    //               value={
-    //                 url ? url : url === '' ? url : product && product.image
-    //               }
-    //               onChange={e => setUrl(e.target.value)}
-    //             />
-    //           </Form.Group>
-
-    //           <Form.Group
-    //             controlId='formFile'
-    //             className='mt-3 mb-3 text-center'
-    //           >
-    //             <Form.Label style={{ fontWeight: 'bold' }}>
-    //               Upload Image
-    //             </Form.Label>
-    //             <Form.Control
-    //               type='file'
-    //               ref={myRef}
-    //               onChange={imageChangeHandler}
-    //             />
-    //           </Form.Group>
-    //           <div className='progress-bar' style={{ width: progress + '%' }} />
-    //           {imageError && <Message variant='danger'>{imageError}</Message>}
-
-    //           <Form.Group className='mb-3'>
-    //             <Form.Label>Link</Form.Label>
-    //             <Form.Control
-    //               type='text'
-    //               name='link'
-    //               placeholder='Enter image URL'
-    //               onChange={changeHandler}
-    //               value={
-    //                 link ? link : link === '' ? link : product && product.link
-    //               }
-    //             />
-    //           </Form.Group>
-
-    //           <Form.Group className='mb-3'>
-    //             <Form.Label>Description</Form.Label>
-    //             <Form.Control
-    //               type='text'
-    //               name='desc'
-    //               placeholder='Enter description'
-    //               onChange={changeHandler}
-    //               value={
-    //                 desc ? desc : desc === '' ? desc : product && product.desc
-    //               }
-    //             />
-    //           </Form.Group>
-
-    //           <Form.Group className='mb-3'>
-    //             <Form.Label>Article</Form.Label>
-    //             <Form.Control
-    //               type='text'
-    //               name='article'
-    //               placeholder='Add article'
-    //               onChange={changeHandler}
-    //               value={
-    //                 article
-    //                   ? article
-    //                   : article === ''
-    //                   ? article
-    //                   : product && product.article
-    //               }
-    //             />
-    //           </Form.Group>
-
-    //           <Form.Group className='mb-3'>
-    //             <Form.Label>Video</Form.Label>
-    //             <Form.Control
-    //               type='text'
-    //               name='video'
-    //               placeholder='Add video'
-    //               onChange={changeHandler}
-    //               value={
-    //                 video
-    //                   ? video
-    //                   : video === ''
-    //                   ? video
-    //                   : product && product.video
-    //               }
-    //             />
-    //           </Form.Group>
-
-    //           <Button variant='primary' type='text'>
-    //             Submit
-    //           </Button>
-    //         </Form>
-    //       </Col>
-    //     </Row>
-    //   </Container>
-    // </>
   )
 }
 
