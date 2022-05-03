@@ -45,33 +45,42 @@ const Login = () => {
   //   }
   // }
 
-  const loginFirebase = async () => {
-    try {
-      const userFirebase = await signInWithEmailAndPassword(
-        auth,
-        firebaseEmail,
-        firebasePassword
-      )
-      console.log(userFirebase)
-    } catch (error) {
-      console.log(error.message)
-    }
-  }
+  // const loginFirebase = async () => {
+  //   try {
+  //     const userFirebase = await signInWithEmailAndPassword(
+  //       auth,
+  //       firebaseEmail,
+  //       firebasePassword
+  //     )
+  //     console.log(userFirebase)
+  //   } catch (error) {
+  //     console.log(error.message)
+  //   }
+  // }
 
   // const logout = async () => {
   //   await signOut(auth)
   // }
 
   useEffect(() => {
+    const loginFirebase = async () => {
+      try {
+        const userFirebase = await signInWithEmailAndPassword(
+          auth,
+          firebaseEmail,
+          firebasePassword
+        )
+        console.log(userFirebase)
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
     if (successLogin && user && user.isAdmin) {
       loginFirebase()
       dispatch(reset())
       // navigate('/')
-    } else if (successLogin || (user && !firebaseUser)) {
-      dispatch(reset())
-      // navigate('/')
     }
-  }, [dispatch, navigate, user, successLogin, login])
+  }, [dispatch, navigate, user, successLogin, firebaseEmail, firebasePassword])
 
   const changeHandler = e => {
     setFormData(prevState => ({

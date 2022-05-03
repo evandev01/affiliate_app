@@ -6,13 +6,12 @@ import { Container, Row, Col, Button, Form } from 'react-bootstrap'
 import Message from './Message'
 import {
   addProduct,
-  getProductById,
   reset,
   updateProduct,
 } from '../features/product/productSlice'
 
 const ProductForm = ({
-  // product,
+  product,
   onImageChange,
   url,
   setUrl,
@@ -25,7 +24,7 @@ const ProductForm = ({
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const { product, successProduct, successCreate, successUpdate } = useSelector(
+  const { successProduct, successCreate, successUpdate } = useSelector(
     state => state.products
   )
 
@@ -37,8 +36,6 @@ const ProductForm = ({
     video: '',
   })
   const { name, link, desc, article, video } = formData
-
-  const [editMode, setEditMode] = useState(false)
 
   const changeHandler = e => {
     setFormData(prevState => ({
@@ -92,28 +89,9 @@ const ProductForm = ({
 
   useEffect(() => {
     if (successCreate || successUpdate) {
-      clearForm()
-      reset()
       navigate('/')
     }
-    if (productId) {
-      dispatch(getProductById(productId))
-      setEditMode(true)
-    }
-    if (editMode && successProduct) {
-      formHandler()
-    }
-  }, [
-    dispatch,
-    editMode,
-    productId,
-    successProduct,
-    successCreate,
-    successUpdate,
-  ])
-
-  const formHandler = () => {
-    if (product && editMode) {
+    if (product && product !== null) {
       setFormData({
         name: product.name,
         link: product.link,
@@ -122,7 +100,15 @@ const ProductForm = ({
         video: product.video,
       })
     }
-  }
+  }, [
+    dispatch,
+    navigate,
+    productId,
+    product,
+    successCreate,
+    successUpdate,
+    successProduct,
+  ])
 
   return (
     <>
