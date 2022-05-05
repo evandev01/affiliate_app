@@ -7,6 +7,7 @@ import Header from './components/Header'
 import Login from './pages/Login'
 import ProductEdit from './pages/ProductEdit'
 import Search from './pages/Search'
+import Products from './pages/Products'
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <Container>
         <Header />
         <Routes>
+          <Route path='/products/:id' element={<Products />} />
           <Route path='/search/:id' element={<Search />} />
           <Route path='/edit/:id' element={<ProductEdit />} />
           <Route path='/edit' element={<ProductEdit />} />

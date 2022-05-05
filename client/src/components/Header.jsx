@@ -9,7 +9,6 @@ import {
   Form,
   FormControl,
   Button,
-  Image,
   Row,
   Col,
 } from 'react-bootstrap'
@@ -48,16 +47,18 @@ const Header = () => {
             <Nav className='me-auto'>
               <Nav.Link href='/'>Home</Nav.Link>
               <NavDropdown title='Categories' id='basic-nav-dropdown'>
-                <NavDropdown.Item href='/tech'>Tech</NavDropdown.Item>
-                <NavDropdown.Item href='/kitchen'>Kitchen</NavDropdown.Item>
-                <NavDropdown.Item href='/outdoors'>
+                <NavDropdown.Item href='/products/tech'>Tech</NavDropdown.Item>
+                <NavDropdown.Item href='/products/kitchen'>
+                  Kitchen
+                </NavDropdown.Item>
+                <NavDropdown.Item href='/products/outdoors'>
                   Hunting/Outdoors
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href='/forhim'>
+                <NavDropdown.Item href='/products/for-him'>
                   Gift Ideas For Him
                 </NavDropdown.Item>
-                <NavDropdown.Item href='/forher'>
+                <NavDropdown.Item href='products/for-her'>
                   Gift Ideas For Her
                 </NavDropdown.Item>
               </NavDropdown>
