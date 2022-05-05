@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import {
   Nav,
   Navbar,
@@ -8,8 +9,11 @@ import {
   Form,
   FormControl,
   Button,
+  Image,
+  Row,
+  Col,
 } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import Fireworks from '../assets/fireworks.mp4'
 
 const Header = () => {
   const [keyword, setKeyword] = useState('')
@@ -18,6 +22,24 @@ const Header = () => {
 
   return (
     <header className='py-3 my-3'>
+      <Container>
+        <Row className='text-center'>
+          <Col>
+            <div id='header-div'>
+              <h1>Evan's</h1>
+              <div id='header-video-div'>
+                <video id='header-video' loop autoPlay muted>
+                  <source src={Fireworks} type='video/mp4' />
+                </video>
+              </div>
+              <h1>Best</h1>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+
+      {/* <div id='header-image' /> */}
+
       <Navbar bg='light' expand='lg'>
         <Container>
           <Navbar.Brand href='/'>Evan's Best</Navbar.Brand>

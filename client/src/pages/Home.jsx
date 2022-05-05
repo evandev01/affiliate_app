@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { Container, Row, Col, Card, Button, Image } from 'react-bootstrap'
-import Fireworks from '../assets/fireworks.jpg'
+import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import {
