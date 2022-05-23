@@ -5,10 +5,12 @@ const {
   getProduct,
   updateProduct,
   deleteProduct,
+  getRandomProducts,
 } = require('../controller/productController')
 const { protect, admin } = require('../middleware/auth')
 
 router.route('/').post(protect, admin, addProduct).get(getProducts)
+router.route('/random').get(getRandomProducts)
 
 router
   .route('/:id')
