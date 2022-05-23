@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Container, Row } from 'react-bootstrap'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import Product from '../components/Product'
+import ProductCarousel from '../components/ProductCarousel'
 import { getProducts } from '../features/product/productSlice'
+import Featured from '../components/Featured'
 
 const Home = () => {
   const dispatch = useDispatch()
 
   const {
     products,
+    success,
+    successCreate,
+    successUpdate,
     successDelete,
     loading,
     errorProducts,
@@ -21,23 +24,49 @@ const Home = () => {
   const { user } = useSelector(state => state.auth)
 
   useEffect(() => {
-    dispatch(getProducts())
-  }, [dispatch, successDelete])
+    if (!success || successUpdate || successCreate) {
+      dispatch(getProducts())
+    }
+  }, [dispatch, successDelete, success, successUpdate, successCreate])
 
   return (
-    <div>
-      <Container style={{ background: 'none' }}>
-        <Row className='text-center'>
-          {errorProducts ||
-            (errorDelete && <Message variant='danger'>{message}</Message>)}
-          {loading && <Loader />}
-          {products &&
-            products.map((product, index) => (
-              <Product product={product} index={index} user={user} />
-            ))}
-        </Row>
-      </Container>
-    </div>
+    <>
+      {/* <Container> */}
+      {errorProducts ||
+        (errorDelete && <Message variant='danger'>{message}</Message>)}
+      {loading && <Loader />}
+
+      <ProductCarousel />
+
+      <Featured
+        type='kitchen'
+        title='Featured Kitchen'
+        products={products && products}
+        user={user && user}
+      />
+
+      <Featured
+        type='forHim'
+        title='Featured Gift Ideas For Him'
+        products={products && products}
+        user={user && user}
+      />
+
+      <Featured
+        type='outdoors'
+        title='Featured Outdoors'
+        products={products && products}
+        user={user && user}
+      />
+
+      <Featured
+        type='tech'
+        title='Featured Tech'
+        products={products && products}
+        user={user && user}
+      />
+      {/* </Container> */}
+    </>
   )
 }
 

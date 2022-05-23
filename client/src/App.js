@@ -8,20 +8,34 @@ import Login from './pages/Login'
 import ProductEdit from './pages/ProductEdit'
 import Search from './pages/Search'
 import Products from './pages/Products'
+import ProductDetails from './pages/ProductDetails'
+import Footer from './components/Footer'
 
 const App = () => {
   return (
     <Router>
-      <Container>
+      <Container
+        style={{
+          background: 'none',
+          paddingRight: '10%',
+          paddingLeft: '10%',
+        }}
+        fluid
+      >
         <Header />
         <Routes>
-          <Route path='/products/:id' element={<Products />} />
-          <Route path='/search/:id' element={<Search />} />
+          <Route path='/search/:searchWord' element={<Search />} />
           <Route path='/edit/:id' element={<ProductEdit />} />
+          <Route path='/products/:keyword/:id' element={<Products />} />
+          <Route path='/products/:keyword' element={<Products />} />
+          <Route path='/product/:id' element={<ProductDetails />} />
+          <Route path='/products' element={<Products />} />
           <Route path='/edit' element={<ProductEdit />} />
+          <Route exact path='/products' element={<Products />} />
           <Route path='/login' element={<Login />} />
           <Route path='/' element={<Home />} />
         </Routes>
+        <Footer />
       </Container>
     </Router>
   )

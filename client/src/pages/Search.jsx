@@ -1,21 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Link, useParams, useNavigate } from 'react-router-dom'
-import { Row, Col, Card, Button, Container } from 'react-bootstrap'
+import { Link, useParams } from 'react-router-dom'
+import { Row, Button, Container } from 'react-bootstrap'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import Product from '../components/Product'
-import {
-  getProducts,
-  deleteProduct,
-  reset,
-} from '../features/product/productSlice'
+import { getProducts } from '../features/product/productSlice'
 
 const Search = () => {
-  const { id } = useParams()
-  const keyword = id
+  const { searchWord } = useParams()
 
-  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const { products, loading, success, error, message } = useSelector(
@@ -25,7 +19,7 @@ const Search = () => {
   const { user } = useSelector(state => state.auth)
 
   const searchResult = products.filter(product =>
-    product.name.toLowerCase().includes(keyword.toLowerCase())
+    product.name.toLowerCase().includes(searchWord.toLowerCase())
   )
 
   useEffect(() => {
@@ -51,7 +45,7 @@ const Search = () => {
             {products &&
               products
                 .filter(product =>
-                  product.name.toLowerCase().includes(keyword.toLowerCase())
+                  product.name.toLowerCase().includes(searchWord.toLowerCase())
                 )
                 .map((product, index) => (
                   <Product product={product} index={index} user={user} />

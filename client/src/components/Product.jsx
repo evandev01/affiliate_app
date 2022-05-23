@@ -1,27 +1,61 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate, Link } from 'react-router-dom'
 import { Row, Col, Card, Button } from 'react-bootstrap'
+import Loader from './Loader'
+import Message from './Message'
 import { deleteProduct, reset } from '../features/product/productSlice'
 
 const Product = ({ product, index, user }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+  const { successDelete, loading, error, message } = useSelector(
+    state => state.products
+  )
+
+  useEffect(() => {
+    if (successDelete) {
+      navigate('/')
+    }
+    // TODO: Add getProductById to get type and navigate to page below
+    // if (successDelete && successProduct) {
+    //   navigate(`/products/${product.type}`)
+    // }
+  }, [successDelete, navigate])
+
   return (
     <>
-      <Col key={index} className='text-center p-2 m-2'>
-        <Card style={{ width: '18rem', height: 'fit-content' }}>
-          <Card.Img variant='top' src={product.image} />
+      {loading && <Loader />}
+      {error && <Message variant='danger'>{message}</Message>}
+
+      <Col key={index} xs='auto' className='text-center'>
+        <Card id='product-card' key={index} className='text-center p-3 m-2'>
+          <Col className='text-center'>
+            <Card.Img
+              id='product-card-img'
+              className='text-center'
+              variant='top'
+              src={product.image}
+            />
+          </Col>
           <Card.Body>
             <Card.Title>{product.name}</Card.Title>
-            <Card.Text>{product.desc}</Card.Text>
-          </Card.Body>
-          <Col className='text-center'>
-            <Link to={product.link}>
-              <Card.Text>{product.desc}</Card.Text>
+            <Card.Title>
+              <strong> {product.price ? `$${product.price}` : '$0.00'}</strong>
+            </Card.Title>
+            <Link to={`/product/${product._id}`}>
+              <Button className='text-center m-2'>View Details</Button>
             </Link>
-          </Col>
+            <Button
+              href={product.link}
+              rel='noreferrer'
+              target='_blank'
+              className='text-center m-2'
+            >
+              View on Amazon
+            </Button>
+          </Card.Body>
           {user && user.isAdmin && (
             <Card.Footer>
               <Row>
@@ -52,6 +86,7 @@ const Product = ({ product, index, user }) => {
                     }}
                     onClick={e => {
                       e.preventDefault()
+                      // TODO: dispatch(getProductById(product._id))
                       dispatch(deleteProduct(product._id))
                     }}
                   >

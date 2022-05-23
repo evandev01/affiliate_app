@@ -48,7 +48,7 @@ const Login = () => {
     if (successLogin && user && user.isAdmin) {
       loginFirebase()
       dispatch(reset())
-      // navigate('/')
+      navigate('/')
     }
   }, [dispatch, navigate, user, successLogin, firebaseEmail, firebasePassword])
 
@@ -61,8 +61,6 @@ const Login = () => {
 
   const submitHandler = e => {
     e.preventDefault()
-    // loginFirebase()
-
     const userData = {
       email,
       password,
