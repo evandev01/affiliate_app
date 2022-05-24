@@ -8,8 +8,9 @@ const productSchema = mongoose.Schema(
     image: { type: String, required: true },
     link: { type: String, required: true },
     desc: { type: String, required: true },
-    article: { type: String },
-    video: { type: String },
+    article: { type: String, required: false },
+    review: { type: String, required: false },
+    video: { type: String, required: false },
     featured: { type: Boolean, default: false },
   },
   { timestamps: true }

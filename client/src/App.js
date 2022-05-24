@@ -26,6 +26,10 @@ const App = () => {
         <Routes>
           <Route path='/search/:searchWord' element={<Search />} />
           <Route path='/edit/:id' element={<ProductEdit />} />
+          <Route
+            path='/products/:keyword/:id/:productAmount'
+            element={<Products />}
+          />
           <Route path='/products/:keyword/:id' element={<Products />} />
           <Route path='/products/:keyword' element={<Products />} />
           <Route path='/product/:id' element={<ProductDetails />} />

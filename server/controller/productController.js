@@ -5,8 +5,18 @@ const asyncHandler = require('express-async-handler')
 // @route   POST '/product'
 // @access  admin
 const addProduct = asyncHandler(async (req, res) => {
-  const { name, price, image, link, desc, article, video, type, featured } =
-    req.body
+  const {
+    name,
+    price,
+    image,
+    link,
+    desc,
+    article,
+    review,
+    video,
+    type,
+    featured,
+  } = req.body
   try {
     const product = await Product.create({
       name: name,
@@ -15,6 +25,7 @@ const addProduct = asyncHandler(async (req, res) => {
       link: link,
       desc: desc,
       article: article,
+      review: review,
       video: video,
       type: type,
       featured: featured,
@@ -28,6 +39,7 @@ const addProduct = asyncHandler(async (req, res) => {
         link: product.link,
         desc: product.desc,
         article: product.article,
+        review: review,
         video: product.video,
         type: product.type,
       })
@@ -105,8 +117,18 @@ const getProduct = asyncHandler(async (req, res) => {
 // @route   PUT '/product/:id'
 // @access  admin
 const updateProduct = asyncHandler(async (req, res) => {
-  const { name, price, image, link, desc, article, video, type, featured } =
-    req.body
+  const {
+    name,
+    price,
+    image,
+    link,
+    desc,
+    article,
+    review,
+    video,
+    type,
+    featured,
+  } = req.body
   const _id = req.params.id
 
   try {
@@ -119,6 +141,7 @@ const updateProduct = asyncHandler(async (req, res) => {
       product.link = link
       product.desc = desc
       product.article = article
+      product.review = review
       product.video = video
       product.type = type
       product.featured = featured
