@@ -27,7 +27,7 @@ const ProductDetails = () => {
     if (!successProduct && productId) {
       dispatch(getProductById(productId))
     }
-  }, [successProduct, productId])
+  }, [dispatch, successProduct, productId])
 
   return (
     <>
@@ -44,6 +44,20 @@ const ProductDetails = () => {
               <br />
               <h4>{product.desc}</h4>
               <br />
+              {product.review && (
+                <>
+                  <h4>Evan's Review</h4>
+                  <p>{product.review}</p>
+                  <br />
+                </>
+              )}
+              {product.article && (
+                <>
+                  <h4>Amazon Details</h4>
+                  <p>{product.article}</p>
+                  <br />
+                </>
+              )}
               <Button
                 href={product.link}
                 rel='noreferrer'

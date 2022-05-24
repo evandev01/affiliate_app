@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Dropdown, DropdownButton } from 'react-bootstrap'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import Product from '../components/Product'
@@ -12,11 +12,13 @@ import {
 } from '../features/product/productSlice'
 
 const Products = () => {
-  const { id, keyword } = useParams()
+  const { id, keyword, productAmount } = useParams()
   const pageNumberId = id - 1
   const productType = keyword
-  const [productsPerPage, setProductsPerPage] = useState(5)
-
+  const productCount = productAmount
+  const [productsPerPage, setProductsPerPage] = useState(
+    productCount ? productCount : 5
+  )
   const [random, setRandom] = useState(false)
   const [currentPage, setCurrentPage] = useState(0)
 
@@ -36,7 +38,6 @@ const Products = () => {
 
   useEffect(() => {
     if (productType === 'all' && !successRandom) {
-      setProductsPerPage(10)
       setRandom(true)
       dispatch(getRandomProducts())
     } else if (!success) {
@@ -57,6 +58,41 @@ const Products = () => {
         <Row>
           {loading && <Loader />}
           {error && <Message variant='danger'>{message}</Message>}
+        </Row>
+        <Row>
+          <Col>
+            {/* {!random } */}
+            <Dropdown>
+              <DropdownButton id='dropdown-basic-button' title='View'>
+                <Dropdown.Item>Products Per Page</Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item
+                  onClick={() => setProductsPerPage(5)}
+                  href={`/products/${
+                    productType && productType
+                  }/1/${productsPerPage}`}
+                >
+                  5
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => setProductsPerPage(10)}
+                  href={`/products/${
+                    productType && productType
+                  }/1/${productsPerPage}`}
+                >
+                  10
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => setProductsPerPage(20)}
+                  href={`/products/${
+                    productType && productType
+                  }/1/${productsPerPage}`}
+                >
+                  20
+                </Dropdown.Item>
+              </DropdownButton>
+            </Dropdown>
+          </Col>
         </Row>
 
         <Row>
@@ -89,6 +125,7 @@ const Products = () => {
                 : products && products.length
             }
             productsPerPage={productsPerPage}
+            setProductsPerPage={setProductsPerPage}
             pageNumberId={pageNumberId}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}

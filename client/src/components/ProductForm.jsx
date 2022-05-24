@@ -53,7 +53,7 @@ const ProductForm = ({
     article: '',
     video: '',
   })
-  const { name, price, link, desc, article, video } = formData
+  const { name, price, link, desc, article, review, video } = formData
 
   const changeHandler = e => {
     setFormData(prevState => ({
@@ -87,6 +87,7 @@ const ProductForm = ({
         link,
         desc,
         article,
+        review,
         video,
         type,
         featured,
@@ -103,6 +104,7 @@ const ProductForm = ({
         link: link,
         desc: desc,
         article: article,
+        review: review,
         video: video,
         type: type,
         featured: featured,
@@ -126,6 +128,7 @@ const ProductForm = ({
         price: product.price,
         desc: product.desc,
         article: product.article,
+        review: product.review,
         video: product.video,
       })
       handleType(product.type)
@@ -292,6 +295,17 @@ const ProductForm = ({
                   placeholder='Add article'
                   onChange={changeHandler}
                   value={article}
+                />
+              </Form.Group>
+
+              <Form.Group className='mb-3'>
+                <Form.Label className='mb-3'>Review</Form.Label>
+                <Form.Control
+                  type='text'
+                  name='review'
+                  placeholder='Add review'
+                  onChange={changeHandler}
+                  value={review}
                 />
               </Form.Group>
 
