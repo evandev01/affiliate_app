@@ -16,27 +16,22 @@ const addProduct = async (productData, token) => {
 }
 
 // GET ALL PRODUCTS
-const getProducts = async token => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }
+const getProducts = async () => {
+  const response = await axios.get(API_URL)
 
-  const response = await axios.get(API_URL, config)
+  return response.data
+}
+
+// GET ALL PRODUCTS
+const getRandomProducts = async () => {
+  const response = await axios.get(API_URL + 'random')
 
   return response.data
 }
 
 // GET PRODUCT BY ID
-const getProductById = async (productId, token) => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }
-
-  const response = await axios.get(API_URL + productId, config)
+const getProductById = async productId => {
+  const response = await axios.get(API_URL + productId)
 
   return response.data
 }
@@ -70,6 +65,7 @@ const deleteProduct = async (productId, token) => {
 const productService = {
   addProduct,
   getProducts,
+  getRandomProducts,
   getProductById,
   updateProduct,
   deleteProduct,

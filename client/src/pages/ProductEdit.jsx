@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
@@ -16,11 +16,14 @@ const ProductEdit = () => {
   const [url, setUrl] = useState('')
   const [imageError, setImageError] = useState('')
 
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const {
     product,
     successProduct,
+    successCreate,
+    successUpdate,
     loading,
     errorProduct,
     errorCreate,
@@ -32,7 +35,17 @@ const ProductEdit = () => {
     if (productId && !successProduct) {
       dispatch(getProductById(productId))
     }
-  }, [dispatch, productId, successProduct])
+    if (successCreate || successUpdate) {
+      navigate('/')
+    }
+  }, [
+    dispatch,
+    productId,
+    successProduct,
+    successCreate,
+    successUpdate,
+    navigate,
+  ])
 
   const types = ['image/png', 'image/jpeg', 'image/jpg']
 

@@ -28,13 +28,30 @@ export const addProduct = createAsyncThunk(
   }
 )
 
-// Get user products
+// Get all products
 export const getProducts = createAsyncThunk(
   'products/getAll',
   async (_, thunkAPI) => {
     try {
-      const token = thunkAPI.getState().auth.user.token
-      return await productService.getProducts(token)
+      return await productService.getProducts()
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+      return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
+
+// Get all products in random order
+export const getRandomProducts = createAsyncThunk(
+  'products/getAllRandom',
+  async (_, thunkAPI) => {
+    try {
+      return await productService.getRandomProducts()
     } catch (error) {
       const message =
         (error.response &&
@@ -117,12 +134,12 @@ export const productSlice = createSlice({
       })
       .addCase(addProduct.fulfilled, (state, action) => {
         state.loading = false
-        state.isCreate = true
+        state.successCreate = true
         state.products.push(action.payload)
       })
       .addCase(addProduct.rejected, (state, action) => {
         state.loading = false
-        state.errorCreate = true
+        state.error = true
         state.message = action.payload
       })
       .addCase(getProducts.pending, state => {
@@ -138,6 +155,19 @@ export const productSlice = createSlice({
         state.error = true
         state.message = action.payload
       })
+      .addCase(getRandomProducts.pending, state => {
+        state.loading = true
+      })
+      .addCase(getRandomProducts.fulfilled, (state, action) => {
+        state.loading = false
+        state.successRandom = true
+        state.randomProducts = action.payload
+      })
+      .addCase(getRandomProducts.rejected, (state, action) => {
+        state.loading = false
+        state.error = true
+        state.message = action.payload
+      })
       .addCase(getProductById.pending, state => {
         state.loading = true
       })
@@ -148,7 +178,7 @@ export const productSlice = createSlice({
       })
       .addCase(getProductById.rejected, (state, action) => {
         state.loading = false
-        state.errorProduct = true
+        state.error = true
         state.message = action.payload
       })
       .addCase(updateProduct.pending, state => {
@@ -161,7 +191,7 @@ export const productSlice = createSlice({
       })
       .addCase(updateProduct.rejected, (state, action) => {
         state.loading = false
-        state.errorUpdate = true
+        state.error = true
         state.message = action.payload
       })
       .addCase(deleteProduct.pending, state => {
@@ -174,7 +204,7 @@ export const productSlice = createSlice({
       })
       .addCase(deleteProduct.rejected, (state, action) => {
         state.loading = false
-        state.errorDelete = true
+        state.error = true
         state.message = action.payload
       })
   },

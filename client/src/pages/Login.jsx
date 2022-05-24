@@ -5,10 +5,10 @@ import { Container, Row, Col, Button, Form } from 'react-bootstrap'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import {
-  createUserWithEmailAndPassword,
+  // createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
-  signOut,
+  // signOut,
 } from 'firebase/auth'
 import { auth } from '../firebase/config'
 import { login, reset } from '../features/auth/authSlice'
@@ -32,36 +32,6 @@ const Login = () => {
     setFirebaseUser(currentUser)
   })
 
-  // const register = async () => {
-  //   try {
-  //     const user = await createUserWithEmailAndPassword(
-  //       auth,
-  //       registerEmail,
-  //       registerPassword
-  //     )
-  //     console.log(user)
-  //   } catch (error) {
-  //     console.log(error.message)
-  //   }
-  // }
-
-  // const loginFirebase = async () => {
-  //   try {
-  //     const userFirebase = await signInWithEmailAndPassword(
-  //       auth,
-  //       firebaseEmail,
-  //       firebasePassword
-  //     )
-  //     console.log(userFirebase)
-  //   } catch (error) {
-  //     console.log(error.message)
-  //   }
-  // }
-
-  // const logout = async () => {
-  //   await signOut(auth)
-  // }
-
   useEffect(() => {
     const loginFirebase = async () => {
       try {
@@ -78,7 +48,7 @@ const Login = () => {
     if (successLogin && user && user.isAdmin) {
       loginFirebase()
       dispatch(reset())
-      // navigate('/')
+      navigate('/')
     }
   }, [dispatch, navigate, user, successLogin, firebaseEmail, firebasePassword])
 
@@ -91,8 +61,6 @@ const Login = () => {
 
   const submitHandler = e => {
     e.preventDefault()
-    // loginFirebase()
-
     const userData = {
       email,
       password,
@@ -156,3 +124,33 @@ const Login = () => {
 }
 
 export default Login
+
+// const register = async () => {
+//   try {
+//     const user = await createUserWithEmailAndPassword(
+//       auth,
+//       registerEmail,
+//       registerPassword
+//     )
+//     console.log(user)
+//   } catch (error) {
+//     console.log(error.message)
+//   }
+// }
+
+// const loginFirebase = async () => {
+//   try {
+//     const userFirebase = await signInWithEmailAndPassword(
+//       auth,
+//       firebaseEmail,
+//       firebasePassword
+//     )
+//     console.log(userFirebase)
+//   } catch (error) {
+//     console.log(error.message)
+//   }
+// }
+
+// const logout = async () => {
+//   await signOut(auth)
+// }
