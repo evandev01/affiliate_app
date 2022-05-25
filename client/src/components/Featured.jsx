@@ -4,6 +4,9 @@ import { Row, Col, Button } from 'react-bootstrap'
 import Product from './Product'
 
 const Featured = ({ type, title, products, user }) => {
+  const featuredProducts = products.filter(
+    product => product.type === type && product.featured === true
+  )
   return (
     <>
       <Row className='mt-5 mb-3' id='border'>
@@ -24,19 +27,10 @@ const Featured = ({ type, title, products, user }) => {
         </Col>
       </Row>
       <Row>
-        {products &&
-          products
-            .filter(
-              product => product.type === type && product.featured === true
-            )
-            .map((product, index) => (
-              <Product
-                key={index}
-                product={product}
-                index={index}
-                user={user}
-              />
-            ))}
+        {featuredProducts &&
+          featuredProducts.map((product, index) => (
+            <Product key={index} product={product} index={index} user={user} />
+          ))}
       </Row>
     </>
   )
