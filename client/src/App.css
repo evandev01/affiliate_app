@@ -1,13 +1,25 @@
 /*===========LOGO===========*/
 #logo {
-  max-height: 5em;
-  width: auto;
+  max-width: 2.5em;
+  height: auto;
   animation-name: rotate-animation;
   animation-duration: 7s;
   animation-iteration-count: infinite;
   animation-delay: 0s;
   animation-play-state: running;
   animation-timing-function: linear;
+}
+@media only screen and (max-width: 992px) {
+  #logo {
+    max-width: 2em;
+    height: auto;
+    animation-name: rotate-animation;
+    animation-duration: 7s;
+    animation-iteration-count: infinite;
+    animation-delay: 0s;
+    animation-play-state: running;
+    animation-timing-function: linear;
+  }
 }
 @keyframes rotate-animation {
   0% {
@@ -18,24 +30,57 @@
   }
 }
 
+/*=======FEATURED TEXT======*/
+#featured {
+  opacity: 100%;
+  /* color: rgba(37, 37, 37, 0.712); */
+}
+
 /*==========BORDER==========*/
 #border {
   background-color: rgba(255, 255, 255, 0.329);
   box-shadow: 5px 5px 10px rgba(55, 94, 148, 0.384),
     -5px -5px 10px rgb(255 255 255 / 40%);
+  /* border: 0.5px solid rgba(0, 0, 0, 0.116); */
+  /* background-color: rgba(156, 156, 156, 0.329); */
 }
 
 /*=========PRODUCT==========*/
-#product-card {
+.card {
+  max-height: fit-content;
   max-width: 22rem;
-  height: auto;
 }
+.card-text {
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 16px; /* fallback */
+  max-height: 32px; /* fallback */
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+@media only screen and (max-width: 495px) {
+  .card-link {
+    font-size: 0.7em;
+  }
+}
+/* @media only screen and (min-width: 992px) {
+  .card {
+    max-width: 10rem;
+    height: auto;
+  }
+  .card-title {
+    font-size: x-small;
+  }
+} */
+
 #product-card-img {
-  width: 100%;
-  height: auto;
-  margin: 0;
   box-shadow: 5px 5px 10px rgb(55 94 148 / 20%),
     -5px -5px 10px rgb(255 255 255 / 40%);
+  /* max-height: 8rem;
+  width: auto;
+  margin: 0; */
 }
 
 /*=========CAROUSEL=========*/
@@ -47,16 +92,16 @@
   margin-right: 20%;
 }
 #carousel-item {
-  height: 12rem;
-  width: auto;
-  /* text-align: 'center'; */
+  max-height: fit-content;
+  width: 22rem;
+  text-align: center;
 }
 #carousel-img {
   height: 12rem;
   width: auto;
   /* max-width: 22rem;
   height: auto; */
-  text-align: center;
+  /* text-align: center; */
 }
 .carousel-inner {
   height: 12rem;
@@ -101,7 +146,8 @@
 }
 
 #header-video {
-  max-height: 200px;
+  max-height: 100px;
+  width: auto;
   width: auto;
   top: 0;
   right: 0;

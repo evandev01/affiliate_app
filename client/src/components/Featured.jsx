@@ -10,12 +10,12 @@ const Featured = ({ type, title, products, user, loading, error, message }) => {
     <>
       {error && <Message variant='danger'>{message}</Message>}
       {loading && <Loader />}
-      <Row className='mt-5 mb-3' id='border'>
+      <Row className='mt-5 mb-2' id={`border`}>
         <Col>
-          <h5 className='p-2'>{title}</h5>
+          <h5 id='featured'>{title}</h5>
         </Col>
       </Row>
-      <Row className='mt-3 mb-3'>
+      <Row className='mt-3 mb-2'>
         <Col
           style={{
             display: 'flex',
@@ -23,7 +23,9 @@ const Featured = ({ type, title, products, user, loading, error, message }) => {
           }}
         >
           <Link to={`/products/${type}`}>
-            <Button>View All</Button>
+            <Button id='featured' size='md'>
+              View All
+            </Button>
           </Link>
         </Col>
       </Row>

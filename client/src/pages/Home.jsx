@@ -64,36 +64,43 @@ const Home = () => {
 
       <ProductCarousel />
 
-      <Featured
-        type='tech'
-        title='Featured Tech'
-        products={productsTech && productsTech}
-        user={user && user}
-        error={error}
-        loading={loading}
-        message={message}
-      />
+      <div id='tech'>
+        <Featured
+          type='tech'
+          title='Featured Tech'
+          products={productsTech && productsTech}
+          user={user && user}
+          error={error}
+          loading={loading}
+          message={message}
+        />
+      </div>
 
-      <Featured
-        type='outdoors'
-        title='Featured Outdoors'
-        products={productsOutdoors && productsOutdoors}
-        user={user && user}
-        error={error}
-        loading={loading}
-        message={message}
-      />
+      <div id='outdoors'>
+        <Featured
+          type='outdoors'
+          title='Featured Outdoors'
+          products={productsOutdoors && productsOutdoors}
+          user={user && user}
+          error={error}
+          loading={loading}
+          message={message}
+        />
+      </div>
 
-      <Featured
-        type='kitchen'
-        title='Featured Kitchen'
-        products={productsKitchen && productsKitchen}
-        user={user && user}
-        error={error}
-        loading={loading}
-        message={message}
-      />
+      <div id='kitchen'>
+        <Featured
+          type='kitchen'
+          title='Featured Kitchen'
+          products={productsKitchen && productsKitchen}
+          user={user && user}
+          error={error}
+          loading={loading}
+          message={message}
+        />
+      </div>
 
+      <div id='gift_ideas_for_him'></div>
       <Featured
         type='forHim'
         title='Featured Gift Ideas For Him'
@@ -104,15 +111,17 @@ const Home = () => {
         message={message}
       />
 
-      <Featured
-        type='forHer'
-        title='Featured Gift Ideas For Her'
-        products={productsForHer && productsForHer}
-        user={user && user}
-        error={error}
-        loading={loading}
-        message={message}
-      />
+      <div id='gift_ideas_for_her'>
+        <Featured
+          type='forHer'
+          title='Featured Gift Ideas For Her'
+          products={productsForHer && productsForHer}
+          user={user && user}
+          error={error}
+          loading={loading}
+          message={message}
+        />
+      </div>
     </>
   )
 }

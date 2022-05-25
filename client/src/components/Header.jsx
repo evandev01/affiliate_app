@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <>
-      <header id='header' className='text-center m-5'>
+      <header id='header' className='text-center mt-5'>
         <div id='video-div'>
           <video id='header-video' loop autoPlay muted>
             <source src={Fireworks} type='video/mp4' />
@@ -31,7 +31,7 @@ const Header = () => {
         </div>
       </header>
 
-      <Navbar bg='light' expand='lg'>
+      <Navbar bg='light' expand='lg' size='sm'>
         <Navbar.Brand href='/'>
           <Image id='logo' src={Logo}></Image>
         </Navbar.Brand>
@@ -56,6 +56,21 @@ const Header = () => {
                 Gift Ideas For Her
               </NavDropdown.Item>
             </NavDropdown>
+
+            <NavDropdown title='Featured' id='basic-nav-dropdown'>
+              <NavDropdown.Item href='#tech'>Tech</NavDropdown.Item>
+              <NavDropdown.Item href='#kitchen'>Kitchen</NavDropdown.Item>
+              <NavDropdown.Item href='#outdoors'>
+                Hunting/Outdoors
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href='#gift_ideas_for_him'>
+                Gift Ideas For Him
+              </NavDropdown.Item>
+              <NavDropdown.Item href='#gift_ideas_for_her'>
+                Gift Ideas For Her
+              </NavDropdown.Item>
+            </NavDropdown>
             {user && user.isAdmin && (
               <NavDropdown title='Admin'>
                 <NavDropdown.Item href='/edit'>Add Product</NavDropdown.Item>
@@ -72,7 +87,6 @@ const Header = () => {
             <FormControl
               type='search'
               placeholder='Search'
-              className='m-2'
               aria-label='Search'
               onChange={e => setSearchWord(e.target.value)}
               value={searchWord}

@@ -23,8 +23,8 @@ const Product = ({ product, index, user, loading, error, message }) => {
       {loading && <Loader />}
       {error && <Message variant='danger'>{message}</Message>}
 
-      <Col key={index} xs='auto' className='text-center'>
-        <Card id='product-card' key={index} className='text-center p-3 m-2'>
+      <Col key={index} xs={6} md={4} lg={3} xl={2} className='text-center mt-2'>
+        <Card id='product-card' key={index} className='text-center '>
           <Col className='text-center'>
             <Card.Img
               id='product-card-img'
@@ -32,63 +32,69 @@ const Product = ({ product, index, user, loading, error, message }) => {
               variant='top'
               src={product.image}
             />
-          </Col>
-          <Card.Body>
-            <Card.Title>{product.name}</Card.Title>
-            <Card.Title>
-              <strong> {product.price ? `$${product.price}` : '$0.00'}</strong>
-            </Card.Title>
-            <Link to={`/product/${product._id}`}>
-              <Button className='text-center m-2'>View Details</Button>
-            </Link>
-            <Button
-              href={product.link}
-              rel='noreferrer'
-              target='_blank'
-              className='text-center m-2'
-            >
-              View on Amazon
-            </Button>
-          </Card.Body>
-          {user && user.isAdmin && (
-            <Card.Footer>
-              <Row>
-                <Col>
-                  <Button
-                    onClick={e => {
-                      e.preventDefault()
-                      dispatch(reset())
-                      navigate(`/edit/${product._id}`)
-                    }}
-                    className='btn btn-primary p-2 mt-2'
-                    style={{
-                      display: 'block',
-                      width: '100%',
-                      padding: '10px',
-                    }}
-                  >
-                    Edit
-                  </Button>
 
-                  <Button
-                    variant='warning'
-                    className='p-2 mt-2'
-                    style={{
-                      display: 'block',
-                      width: '100%',
-                      padding: '10px',
-                    }}
-                    onClick={e => {
-                      e.preventDefault()
-                      dispatch(deleteProduct(product._id))
-                    }}
-                  >
-                    Delete
-                  </Button>
-                </Col>
-              </Row>
-            </Card.Footer>
-          )}
+            <Card.Body className='text-center'>
+              <Card.Text style={{ color: 'black' }}>{product.name}</Card.Text>
+              <Card.Title style={{ color: 'black' }}>
+                <strong>{product.price ? `$${product.price}` : '$0.00'}</strong>
+              </Card.Title>
+              <Link
+                className='card-link p-2'
+                style={{ textDecoration: 'none' }}
+                to={`/product/${product._id}`}
+              >
+                View Details
+              </Link>
+              <br />
+              <a
+                style={{ textDecoration: 'none' }}
+                className='card-link p-2'
+                // style={{ fontSize: 'medium' }}
+                href={product.link}
+              >
+                View on Amazon
+              </a>
+            </Card.Body>
+            {user && user.isAdmin && (
+              <Card.Footer>
+                <Row>
+                  <Col>
+                    <Button
+                      onClick={e => {
+                        e.preventDefault()
+                        dispatch(reset())
+                        navigate(`/edit/${product._id}`)
+                      }}
+                      className='btn btn-primary p-2 mt-2'
+                      style={{
+                        display: 'block',
+                        width: '100%',
+                        padding: '10px',
+                      }}
+                    >
+                      Edit
+                    </Button>
+
+                    <Button
+                      variant='warning'
+                      className='p-2 mt-2'
+                      style={{
+                        display: 'block',
+                        width: '100%',
+                        padding: '10px',
+                      }}
+                      onClick={e => {
+                        e.preventDefault()
+                        dispatch(deleteProduct(product._id))
+                      }}
+                    >
+                      Delete
+                    </Button>
+                  </Col>
+                </Row>
+              </Card.Footer>
+            )}
+          </Col>
         </Card>
       </Col>
     </>
