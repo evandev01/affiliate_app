@@ -31,7 +31,6 @@ const Home = () => {
 
   return (
     <>
-      {/* <Container> */}
       {errorProducts ||
         (errorDelete && <Message variant='danger'>{message}</Message>)}
       {loading && <Loader />}
@@ -41,31 +40,50 @@ const Home = () => {
       <Featured
         type='kitchen'
         title='Featured Kitchen'
-        products={products && products}
+        products={
+          products &&
+          products.filter(
+            product => product.type === 'kitchen' && product.featured === true
+          )
+        }
         user={user && user}
       />
 
       <Featured
         type='forHim'
         title='Featured Gift Ideas For Him'
-        products={products && products}
+        products={
+          products &&
+          products.filter(
+            product => product.type === 'forHim' && product.featured === true
+          )
+        }
         user={user && user}
       />
 
       <Featured
         type='outdoors'
         title='Featured Outdoors'
-        products={products && products}
+        products={
+          products &&
+          products.filter(
+            product => product.type === 'outdoors' && product.featured === true
+          )
+        }
         user={user && user}
       />
 
       <Featured
         type='tech'
         title='Featured Tech'
-        products={products && products}
+        products={
+          products &&
+          products.filter(
+            product => product.type === 'tech' && product.featured === true
+          )
+        }
         user={user && user}
       />
-      {/* </Container> */}
     </>
   )
 }
