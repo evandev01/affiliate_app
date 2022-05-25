@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path')
 const { errorHandler } = require('./middleware/errorMiddleware')
 const routes = require('./routes')
 const connectDB = require('./config/db')
