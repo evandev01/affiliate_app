@@ -6,13 +6,11 @@ import Loader from './Loader'
 import Message from './Message'
 import { deleteProduct, reset } from '../features/product/productSlice'
 
-const Product = ({ product, index, user }) => {
+const Product = ({ product, index, user, loading, error, message }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const { successDelete, loading, error, message } = useSelector(
-    state => state.products
-  )
+  const { successDelete } = useSelector(state => state.products)
 
   useEffect(() => {
     if (successDelete) {

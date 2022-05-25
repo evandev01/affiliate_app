@@ -99,13 +99,29 @@ const Products = () => {
           {productType === 'all' && randomProducts
             ? randomProducts.slice(start, end).map((product, i) => (
                 <Col md={4} key={i}>
-                  <Product key={i} product={product} index={i} user={user} />
+                  <Product
+                    key={i}
+                    product={product}
+                    index={i}
+                    user={user}
+                    loading={loading}
+                    error={error}
+                    message={message}
+                  />
                 </Col>
               ))
             : productType && typeProducts
             ? typeProducts.slice(start, end).map((product, i) => (
                 <Col md={4} key={i}>
-                  <Product key={i} product={product} index={i} user={user} />
+                  <Product
+                    key={i}
+                    product={product}
+                    index={i}
+                    user={user}
+                    loading={loading}
+                    error={error}
+                    message={message}
+                  />
                 </Col>
               ))
             : products &&

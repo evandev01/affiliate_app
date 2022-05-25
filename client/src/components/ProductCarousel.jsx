@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Carousel } from 'react-bootstrap'
-import {
-  getProducts,
-  getRandomProducts,
-} from '../features/product/productSlice'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faCircleChevronRight,
   faCircleChevronLeft,
 } from '@fortawesome/free-solid-svg-icons'
+import Message from './Message'
+import Loader from './Loader'
+import { getRandomProducts } from '../features/product/productSlice'
 
 const ProductCarousel = () => {
   const dispatch = useDispatch()
 
-  const { randomProducts, successRandom } = useSelector(state => state.products)
+  const { randomProducts, successRandom, loading, error, message } =
+    useSelector(state => state.products)
 
   const [index, setIndex] = useState(0)
 
@@ -31,6 +32,8 @@ const ProductCarousel = () => {
   return (
     <>
       <Row>
+        {error && <Message variant='danger'>{message}</Message>}
+        {loading && <Loader />}
         <Col className='text-center'>
           <Carousel
             id='carousel'

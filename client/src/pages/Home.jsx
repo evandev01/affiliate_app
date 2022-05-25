@@ -12,11 +12,11 @@ const Home = () => {
   const {
     products,
     success,
+    loading,
+    error,
     successCreate,
     successUpdate,
     successDelete,
-    loading,
-    errorProducts,
     errorDelete,
     message,
   } = useSelector(state => state.products)
@@ -55,13 +55,11 @@ const Home = () => {
     if (!success || successUpdate || successCreate) {
       dispatch(getProducts())
     }
-    console.log(productsTech)
   }, [dispatch, successDelete, success, successUpdate, successCreate])
 
   return (
     <>
-      {errorProducts ||
-        (errorDelete && <Message variant='danger'>{message}</Message>)}
+      {error || (errorDelete && <Message variant='danger'>{message}</Message>)}
       {loading && <Loader />}
 
       <ProductCarousel />
@@ -71,6 +69,9 @@ const Home = () => {
         title='Featured Tech'
         products={productsTech && productsTech}
         user={user && user}
+        error={error}
+        loading={loading}
+        message={message}
       />
 
       <Featured
@@ -78,6 +79,9 @@ const Home = () => {
         title='Featured Outdoors'
         products={productsOutdoors && productsOutdoors}
         user={user && user}
+        error={error}
+        loading={loading}
+        message={message}
       />
 
       <Featured
@@ -85,6 +89,9 @@ const Home = () => {
         title='Featured Kitchen'
         products={productsKitchen && productsKitchen}
         user={user && user}
+        error={error}
+        loading={loading}
+        message={message}
       />
 
       <Featured
@@ -92,6 +99,9 @@ const Home = () => {
         title='Featured Gift Ideas For Him'
         products={productsForHim && productsForHim}
         user={user && user}
+        error={error}
+        loading={loading}
+        message={message}
       />
 
       <Featured
@@ -99,6 +109,9 @@ const Home = () => {
         title='Featured Gift Ideas For Her'
         products={productsForHer && productsForHer}
         user={user && user}
+        error={error}
+        loading={loading}
+        message={message}
       />
     </>
   )
