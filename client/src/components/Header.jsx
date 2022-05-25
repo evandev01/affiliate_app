@@ -31,7 +31,7 @@ const Header = () => {
         </div>
       </header>
 
-      <Navbar bg='light' expand='lg' size='sm'>
+      <Navbar bg='light' expand='lg'>
         <Navbar.Brand href='/'>
           <Image id='logo' src={Logo}></Image>
         </Navbar.Brand>
