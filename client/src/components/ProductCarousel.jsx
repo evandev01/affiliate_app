@@ -43,7 +43,7 @@ const ProductCarousel = () => {
             interval={3000}
             fade
           >
-            {randomProducts &&
+            {Array.isArray(randomProducts) &&
               randomProducts.map((product, index) => (
                 <Carousel.Item key={index}>
                   <img
