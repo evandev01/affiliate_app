@@ -58,35 +58,35 @@ const Home = () => {
       <Featured
         type='tech'
         title='Featured Tech'
-        products={products && productsTech}
+        products={products && productsTech && productsTech}
         user={user && user}
       />
 
       <Featured
         type='outdoors'
         title='Featured Outdoors'
-        products={products && productsOutdoors}
+        products={products && productsOutdoors && productsOutdoors}
         user={user && user}
       />
 
       <Featured
         type='kitchen'
         title='Featured Kitchen'
-        products={products && productsKitchen}
+        products={products && productsKitchen && productsKitchen}
         user={user && user}
       />
 
       <Featured
         type='forHim'
         title='Featured Gift Ideas For Him'
-        products={products && productsForHim}
+        products={products && productsForHim && productsForHim}
         user={user && user}
       />
 
       <Featured
         type='forHer'
-        title='Featured Gift Ideas For Him'
-        products={products && productsForHer}
+        title='Featured Gift Ideas For Her'
+        products={products && productsForHer && productsForHer}
         user={user && user}
       />
     </>
