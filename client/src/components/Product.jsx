@@ -16,10 +16,6 @@ const Product = ({ product, index, user, loading, error, message }) => {
     if (successDelete) {
       navigate('/')
     }
-    // TODO: Add getProductById to get type and navigate to page below
-    // if (successDelete && successProduct) {
-    //   navigate(`/products/${product.type}`)
-    // }
   }, [successDelete, navigate])
 
   return (
@@ -84,7 +80,6 @@ const Product = ({ product, index, user, loading, error, message }) => {
                     }}
                     onClick={e => {
                       e.preventDefault()
-                      // TODO: dispatch(getProductById(product._id))
                       dispatch(deleteProduct(product._id))
                     }}
                   >

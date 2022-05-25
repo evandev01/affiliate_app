@@ -25,29 +25,29 @@ const Home = () => {
 
   const productsKitchen =
     products &&
-    Array.from(products).filter(
+    products.filter(
       product => product.type === 'kitchen' && product.featured === true
     )
   const productsForHim =
     products &&
-    Array.from(products).filter(
+    products.filter(
       product => product.type === 'forHim' && product.featured === true
     )
   const productsForHer =
     products &&
-    Array.from(products).filter(
+    products.filter(
       product => product.type === 'forHer' && product.featured === true
     )
 
   const productsOutdoors =
     products &&
-    Array.from(products).filter(
+    products.filter(
       product => product.type === 'outdoors' && product.featured === true
     )
 
   const productsTech =
     products &&
-    Array.from(products).filter(
+    products.filter(
       product => product.type === 'tech' && product.featured === true
     )
 
