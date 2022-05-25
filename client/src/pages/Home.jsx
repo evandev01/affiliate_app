@@ -29,6 +29,24 @@ const Home = () => {
     }
   }, [dispatch, successDelete, success, successUpdate, successCreate])
 
+  const productsKitchen = products.filter(
+    product => product.type === 'kitchen' && product.featured === true
+  )
+  const productsForHim = products.filter(
+    product => product.type === 'forHim' && product.featured === true
+  )
+  const productsForHer = products.filter(
+    product => product.type === 'forHer' && product.featured === true
+  )
+
+  const productsOutdoors = products.filter(
+    product => product.type === 'outdoors' && product.featured === true
+  )
+
+  const productsTech = products.filter(
+    product => product.type === 'tech' && product.featured === true
+  )
+
   return (
     <>
       {errorProducts ||
@@ -38,50 +56,37 @@ const Home = () => {
       <ProductCarousel />
 
       <Featured
-        type='kitchen'
-        title='Featured Kitchen'
-        products={
-          products &&
-          products.filter(
-            product => product.type === 'kitchen' && product.featured === true
-          )
-        }
-        user={user && user}
-      />
-
-      <Featured
-        type='forHim'
-        title='Featured Gift Ideas For Him'
-        products={
-          products &&
-          products.filter(
-            product => product.type === 'forHim' && product.featured === true
-          )
-        }
+        type='tech'
+        title='Featured Tech'
+        products={products && productsTech}
         user={user && user}
       />
 
       <Featured
         type='outdoors'
         title='Featured Outdoors'
-        products={
-          products &&
-          products.filter(
-            product => product.type === 'outdoors' && product.featured === true
-          )
-        }
+        products={products && productsOutdoors}
         user={user && user}
       />
 
       <Featured
-        type='tech'
-        title='Featured Tech'
-        products={
-          products &&
-          products.filter(
-            product => product.type === 'tech' && product.featured === true
-          )
-        }
+        type='kitchen'
+        title='Featured Kitchen'
+        products={products && productsKitchen}
+        user={user && user}
+      />
+
+      <Featured
+        type='forHim'
+        title='Featured Gift Ideas For Him'
+        products={products && productsForHim}
+        user={user && user}
+      />
+
+      <Featured
+        type='forHer'
+        title='Featured Gift Ideas For Him'
+        products={products && productsForHer}
         user={user && user}
       />
     </>
