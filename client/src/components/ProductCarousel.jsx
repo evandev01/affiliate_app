@@ -14,17 +14,15 @@ import {
 const ProductCarousel = () => {
   const dispatch = useDispatch()
 
-  const { randomProducts, success } = useSelector(state => state.products)
+  const { randomProducts, successRandom } = useSelector(state => state.products)
 
   const [index, setIndex] = useState(0)
 
   useEffect(() => {
-    if (!success) {
-      dispatch(getProducts())
-    } else {
+    if (!successRandom) {
       dispatch(getRandomProducts())
     }
-  }, [dispatch, success])
+  }, [dispatch, successRandom])
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex)
