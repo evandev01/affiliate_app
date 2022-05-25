@@ -35,6 +35,8 @@ app.use(errorHandler)
 app.listen(
   PORT,
   console.log(
-    `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.blue.bold
+    `Server running in `.america +
+      `${process.env.NODE_ENV} mode on port `.red.bold +
+      `${PORT}`.white.bgCyan
   )
 )
