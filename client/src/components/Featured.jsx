@@ -6,23 +6,23 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 
 const Featured = ({ type, title, products, user, loading, error, message }) => {
-  const [loadingTitle, setLoadingTitle] = useState(false)
+  // const [loadingTitle, setLoadingTitle] = useState(false)
 
-  useEffect(() => {
-    if (!title) {
-      setLoadingTitle(true)
-    } else {
-      setLoadingTitle(false)
-    }
-  }, [title])
+  // useEffect(() => {
+  //   if (!title) {
+  //     setLoadingTitle(true)
+  //   } else {
+  //     setLoadingTitle(false)
+  //   }
+  // }, [title])
 
   return (
     <>
       {error && <Message variant='danger'>{message}</Message>}
-      {loading || (loadingTitle && <Loader />)}
+      {loading && <Loader />}
       <Row className='mt-5 mb-2' id={`border`}>
         <Col>
-          <h5 id='featured'>{title && title}</h5>
+          <h5 id='featured'>{title}</h5>
         </Col>
       </Row>
       <Row className='mt-3 mb-2'>

@@ -97,8 +97,9 @@ const Products = () => {
 
         <Row>
           {productType === 'all' && randomProducts
-            ? randomProducts.slice(start, end).map((product, i) => (
-                <Col md={4} key={i}>
+            ? randomProducts
+                .slice(start, end)
+                .map((product, i) => (
                   <Product
                     key={i}
                     product={product}
@@ -108,11 +109,11 @@ const Products = () => {
                     error={error}
                     message={message}
                   />
-                </Col>
-              ))
+                ))
             : productType && typeProducts
-            ? typeProducts.slice(start, end).map((product, i) => (
-                <Col md={4} key={i}>
+            ? typeProducts
+                .slice(start, end)
+                .map((product, i) => (
                   <Product
                     key={i}
                     product={product}
@@ -122,8 +123,7 @@ const Products = () => {
                     error={error}
                     message={message}
                   />
-                </Col>
-              ))
+                ))
             : products &&
               products
                 .slice(start, end)
