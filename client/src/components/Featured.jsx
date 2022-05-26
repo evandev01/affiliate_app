@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col, Button } from 'react-bootstrap'
 import Product from './Product'
@@ -6,16 +6,6 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 
 const Featured = ({ type, title, products, user, loading, error, message }) => {
-  // const [loadingTitle, setLoadingTitle] = useState(false)
-
-  // useEffect(() => {
-  //   if (!title) {
-  //     setLoadingTitle(true)
-  //   } else {
-  //     setLoadingTitle(false)
-  //   }
-  // }, [title])
-
   return (
     <>
       {error && <Message variant='danger'>{message}</Message>}
