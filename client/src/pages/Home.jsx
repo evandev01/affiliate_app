@@ -66,12 +66,8 @@ const Home = () => {
       <ProductCarousel />
 
       <div id='tech'>
-        <Row className='mt-5 mb-2' id='border'>
-          <Col>
-            <h5>Featured Tech</h5>
-          </Col>
-        </Row>
         <Featured
+          title='Featured Tech'
           type='tech'
           products={productsTech && productsTech}
           user={user && user}
@@ -82,12 +78,8 @@ const Home = () => {
       </div>
 
       <div id='outdoors'>
-        <Row className='mt-5 mb-2' id='border'>
-          <Col>
-            <h5>Featured Outdoors</h5>
-          </Col>
-        </Row>
         <Featured
+          title='Featured Outdoors'
           type='outdoors'
           products={productsOutdoors && productsOutdoors}
           user={user && user}
@@ -98,12 +90,8 @@ const Home = () => {
       </div>
 
       <div id='kitchen'>
-        <Row className='mt-5 mb-2' id='border'>
-          <Col>
-            <h5>Featured Kitchen</h5>
-          </Col>
-        </Row>
         <Featured
+          title='Featured Kitchen'
           type='kitchen'
           products={productsKitchen && productsKitchen}
           user={user && user}
@@ -114,12 +102,8 @@ const Home = () => {
       </div>
 
       <div id='gift_ideas_for_him'>
-        <Row className='mt-5 mb-2' id='border'>
-          <Col>
-            <h5>Featured Gift Ideas For Him</h5>
-          </Col>
-        </Row>
         <Featured
+          title='Featured Gift Ideas For Him'
           type='forHim'
           products={productsForHim && productsForHim}
           user={user && user}
@@ -130,12 +114,8 @@ const Home = () => {
       </div>
 
       <div id='gift_ideas_for_her'>
-        <Row className='mt-5 mb-2' id='border'>
-          <Col>
-            <h5>Featured Gift Ideas For Her</h5>
-          </Col>
-        </Row>
         <Featured
+          title='Featured Gift Ideas For Her'
           type='forHer'
           products={productsForHer && productsForHer}
           user={user && user}

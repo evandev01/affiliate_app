@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className='m-5 p-5'>
       <Row className='justify-content-md-center'>
         <Col className='text-center'>
-          <Image id='logo-spinning' src={Logo} className='m-2' />
+          <Image id='logo-footer' src={Logo} className='m-2' />
         </Col>
       </Row>
       <Row>
