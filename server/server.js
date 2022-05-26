@@ -38,6 +38,6 @@ app.listen(
   console.log(
     `Server running in `.america +
       `${process.env.NODE_ENV} mode on port `.red.bold +
-      `${PORT}`.white.bgCyan
+      `${PORT}`.cyan.bold
   )
 )

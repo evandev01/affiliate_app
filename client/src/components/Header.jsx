@@ -114,11 +114,6 @@ const Header = () => {
             </Navbar.Collapse>
           </Navbar>
         </Row>
-        <Row className='justify-content-md-center'>
-          <Col className='text-center'>
-            <Image id='logo-spinning' src={Logo} className='m-2' />
-          </Col>
-        </Row>
       </Container>
       <p className='text-center'>
         The best products, the best prices, just for you!

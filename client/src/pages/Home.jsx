@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Row, Col } from 'react-bootstrap'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import ProductCarousel from '../components/ProductCarousel'
@@ -65,9 +66,13 @@ const Home = () => {
       <ProductCarousel />
 
       <div id='tech'>
+        <Row className='mt-5 mb-2' id='border'>
+          <Col>
+            <h5 id='featured'>Featured Tech</h5>
+          </Col>
+        </Row>
         <Featured
           type='tech'
-          title={'Featured Tech'}
           products={productsTech && productsTech}
           user={user && user}
           error={error}
@@ -77,9 +82,13 @@ const Home = () => {
       </div>
 
       <div id='outdoors'>
+        <Row className='mt-5 mb-2' id='border'>
+          <Col>
+            <h5 id='featured'>Featured Outdoors</h5>
+          </Col>
+        </Row>
         <Featured
           type='outdoors'
-          title={'Featured Outdoors'}
           products={productsOutdoors && productsOutdoors}
           user={user && user}
           error={error}
@@ -89,9 +98,13 @@ const Home = () => {
       </div>
 
       <div id='kitchen'>
+        <Row className='mt-5 mb-2' id='border'>
+          <Col>
+            <h5 id='featured'>Featured Kitchen</h5>
+          </Col>
+        </Row>
         <Featured
           type='kitchen'
-          title={'Featured Kitchen'}
           products={productsKitchen && productsKitchen}
           user={user && user}
           error={error}
@@ -100,21 +113,30 @@ const Home = () => {
         />
       </div>
 
-      <div id='gift_ideas_for_him'></div>
-      <Featured
-        type='forHim'
-        title={'Featured Gift Ideas For Him'}
-        products={productsForHim && productsForHim}
-        user={user && user}
-        error={error}
-        loading={loading}
-        message={message}
-      />
+      <div id='gift_ideas_for_him'>
+        <Row className='mt-5 mb-2' id='border'>
+          <Col>
+            <h5 id='featured'>Featured Gift Ideas For Him</h5>
+          </Col>
+        </Row>
+        <Featured
+          type='forHim'
+          products={productsForHim && productsForHim}
+          user={user && user}
+          error={error}
+          loading={loading}
+          message={message}
+        />
+      </div>
 
       <div id='gift_ideas_for_her'>
+        <Row className='mt-5 mb-2' id='border'>
+          <Col>
+            <h5 id='featured'>Featured Gift Ideas For Her</h5>
+          </Col>
+        </Row>
         <Featured
           type='forHer'
-          title={'Featured Gift Ideas For Her'}
           products={productsForHer && productsForHer}
           user={user && user}
           error={error}
