@@ -68,7 +68,7 @@ const Home = () => {
       <div id='tech'>
         <Row className='mt-5 mb-2' id='border'>
           <Col>
-            <h5 id='featured'>Featured Tech</h5>
+            <h5>Featured Tech</h5>
           </Col>
         </Row>
         <Featured
@@ -84,7 +84,7 @@ const Home = () => {
       <div id='outdoors'>
         <Row className='mt-5 mb-2' id='border'>
           <Col>
-            <h5 id='featured'>Featured Outdoors</h5>
+            <h5>Featured Outdoors</h5>
           </Col>
         </Row>
         <Featured
@@ -100,7 +100,7 @@ const Home = () => {
       <div id='kitchen'>
         <Row className='mt-5 mb-2' id='border'>
           <Col>
-            <h5 id='featured'>Featured Kitchen</h5>
+            <h5>Featured Kitchen</h5>
           </Col>
         </Row>
         <Featured
@@ -116,7 +116,7 @@ const Home = () => {
       <div id='gift_ideas_for_him'>
         <Row className='mt-5 mb-2' id='border'>
           <Col>
-            <h5 id='featured'>Featured Gift Ideas For Him</h5>
+            <h5>Featured Gift Ideas For Him</h5>
           </Col>
         </Row>
         <Featured
@@ -132,7 +132,7 @@ const Home = () => {
       <div id='gift_ideas_for_her'>
         <Row className='mt-5 mb-2' id='border'>
           <Col>
-            <h5 id='featured'>Featured Gift Ideas For Her</h5>
+            <h5>Featured Gift Ideas For Her</h5>
           </Col>
         </Row>
         <Featured
