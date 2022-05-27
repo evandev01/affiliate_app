@@ -1,5 +1,7 @@
 const path = require('path')
 const express = require('express')
+const http = require('http')
+const enforce = require('express-sslify')
 const { errorHandler } = require('./middleware/errorMiddleware')
 const routes = require('./routes')
 const connectDB = require('./config/db')
@@ -12,11 +14,15 @@ const app = express()
 
 app.use(express.json())
 
+app.use(enforce.HTTPS({ trustProtoHeader: true }))
+
 app.use(cors())
 
 connectDB()
 
 app.use(routes)
+
+app.use(errorHandler)
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')))
@@ -30,8 +36,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const PORT = process.env.PORT || 5000
-
-app.use(errorHandler)
 
 app.listen(
   PORT,
