@@ -93,9 +93,16 @@
 #product-card-img {
   box-shadow: 5px 5px 10px rgb(55 94 148 / 20%),
     -5px -5px 10px rgb(255 255 255 / 40%);
-  /* max-height: 8rem;
-  width: auto;
-  margin: 0; */
+}
+
+/*======PRODUCT VIDEO=======*/
+#video {
+  max-width: 100%;
+}
+
+#details-text {
+  font-weight: bold;
+  font-size: large;
 }
 
 /*=========CAROUSEL=========*/
