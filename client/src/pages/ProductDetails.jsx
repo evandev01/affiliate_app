@@ -36,8 +36,22 @@ const ProductDetails = () => {
         {error && <Message variant='danger'>{message}</Message>}
         {product && (
           <Row>
-            <Col>
+            <Col className='text-center'>
               <Image src={product.image} />
+              {/* <h5>Video Review</h5> */}
+              {product.video && (
+                <iframe
+                  id='video'
+                  className='mt-4'
+                  width='560'
+                  height='315'
+                  src={product.video}
+                  title='YouTube video player'
+                  frameborder='0'
+                  allow='accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                  allowfullscreen='true'
+                ></iframe>
+              )}
             </Col>
             <Col>
               <h1>${product.price}</h1>
@@ -47,14 +61,14 @@ const ProductDetails = () => {
               {product.review && (
                 <>
                   <h4>Evan's Review</h4>
-                  <p>{product.review}</p>
+                  <p id='details-text'>{product.review}</p>
                   <br />
                 </>
               )}
               {product.article && (
                 <>
                   <h4>Amazon Details</h4>
-                  <p>{product.article}</p>
+                  <p id='details-text'>{product.article}</p>
                   <br />
                 </>
               )}
