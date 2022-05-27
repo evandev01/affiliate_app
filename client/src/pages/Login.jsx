@@ -4,12 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Container, Row, Col, Button, Form } from 'react-bootstrap'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
-import {
-  // createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  // signOut,
-} from 'firebase/auth'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase/config'
 import { login, reset } from '../features/auth/authSlice'
 
@@ -19,7 +14,6 @@ const Login = () => {
 
   const [firebaseEmail, setFirebaseEmail] = useState('')
   const [firebasePassword, setFirebasePassword] = useState('')
-  const [firebaseUser, setFirebaseUser] = useState({})
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -27,10 +21,6 @@ const Login = () => {
   const { user, loading, errorLogin, successLogin, message } = useSelector(
     state => state.auth
   )
-
-  onAuthStateChanged(auth, currentUser => {
-    setFirebaseUser(currentUser)
-  })
 
   useEffect(() => {
     const loginFirebase = async () => {
@@ -81,7 +71,6 @@ const Login = () => {
                 <Form.Label>Email address</Form.Label>
                 <Form.Control
                   type='email'
-                  id='email'
                   name='email'
                   placeholder='Enter email'
                   onChange={e => {
@@ -99,7 +88,6 @@ const Login = () => {
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                   type='password'
-                  id='password'
                   name='password'
                   placeholder='Password'
                   onChange={e => {
@@ -109,9 +97,10 @@ const Login = () => {
                   value={password}
                 />
               </Form.Group>
-              <Form.Group className='mb-3' controlId='formBasicCheckbox'>
-                <Form.Check type='checkbox' label='Check me out' />
-              </Form.Group>
+              <Form.Group
+                className='mb-3'
+                controlId='formBasicCheckbox'
+              ></Form.Group>
               <Button variant='primary' type='submit'>
                 Submit
               </Button>

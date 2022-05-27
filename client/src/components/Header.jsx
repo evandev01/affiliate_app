@@ -11,7 +11,6 @@ import {
   Image,
   Container,
   Row,
-  Col,
 } from 'react-bootstrap'
 import Fireworks from '../assets/fireworks.mp4'
 import Logo from '../assets/icons/evanDev_logo.png'
