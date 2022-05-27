@@ -1,7 +1,5 @@
 const path = require('path')
 const express = require('express')
-const http = require('http')
-const enforce = require('express-sslify')
 const { errorHandler } = require('./middleware/errorMiddleware')
 const routes = require('./routes')
 const connectDB = require('./config/db')
@@ -23,7 +21,6 @@ app.use(routes)
 app.use(errorHandler)
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(enforce.HTTPS({ trustProtoHeader: true }))
   app.use(express.static(path.join(__dirname, '../client/build')))
   app.get('/*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'))
