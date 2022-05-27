@@ -30,7 +30,6 @@ const Login = () => {
           firebaseEmail,
           firebasePassword
         )
-        console.log(userFirebase)
       } catch (error) {
         console.log(error.message)
       }
