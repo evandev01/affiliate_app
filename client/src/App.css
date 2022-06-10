@@ -1,3 +1,34 @@
+/*=========PRODUCT=========*/
+#product-title {
+  font-size: 1vw;
+}
+@media only screen and (max-width: 991px) {
+  #product-title {
+    font-size: 2.5vw;
+    text-decoration: none !important;
+  }
+}
+#details-link {
+  font-size: 0.7vw;
+  text-decoration: none !important;
+}
+#amazon-link {
+  font-size: 0.7vw;
+  text-decoration: none !important;
+}
+@media only screen and (max-width: 991px) {
+  #details-link {
+    font-size: 1.5vw;
+    text-decoration: none !important;
+  }
+}
+@media only screen and (max-width: 991px) {
+  #amazon-link {
+    font-size: 1.5vw;
+    text-decoration: none !important;
+  }
+}
+
 /*===========LOGO===========*/
 #logo {
   max-width: 2em;
@@ -13,6 +44,7 @@
 #logo-footer {
   max-width: 3em;
   height: auto;
+  text-align: center;
 }
 @media only screen and (max-width: 992px) {
   #logo-footer {
@@ -20,6 +52,7 @@
     height: auto;
   }
 }
+
 /* #logo-spinning {
   max-width: 4em;
   height: auto;
@@ -80,24 +113,31 @@
     font-size: 0.7em;
   }
 }
-/* @media only screen and (min-width: 992px) {
-  .card {
-    max-width: 10rem;
-    height: auto;
-  }
-  .card-title {
-    font-size: x-small;
-  }
-} */
 
 #product-card-img {
   box-shadow: 5px 5px 10px rgb(55 94 148 / 20%),
     -5px -5px 10px rgb(255 255 255 / 40%);
 }
 
-/*======PRODUCT VIDEO=======*/
+/*======PRODUCT DETAILS=======*/
+#product-details-img {
+  max-width: 100%;
+  height: auto;
+}
+@media only screen and (max-width: 991px) {
+  #product-details-img {
+    max-width: 60%;
+    height: auto;
+  }
+}
 #video {
   max-width: 100%;
+}
+@media only screen and (max-width: 991px) {
+  #video {
+    max-width: 60%;
+    max-height: 20%;
+  }
 }
 
 #details-text {

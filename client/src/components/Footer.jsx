@@ -5,11 +5,13 @@ import Logo from '../assets/icons/evanDev_logo.png'
 const Footer = () => {
   return (
     <footer className='m-5 p-5'>
-      <Row className='justify-content-md-center'>
-        <Col className='text-center'>
-          <Image id='logo-footer' src={Logo} className='m-2' />
-        </Col>
-      </Row>
+      {/* <Row className='justify-content-md-center'> */}
+      {/* <Col className='text-center'> */}
+      <div className='logo-spinning text-center'>
+        <Image id='logo-footer' src={Logo} className='m-2' />
+      </div>
+      {/* </Col> */}
+      {/* </Row> */}
       <Row>
         <Col className='text-center'>
           Copyright <strong> &copy; evanDev</strong>

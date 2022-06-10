@@ -36,13 +36,17 @@ const ProductDetails = () => {
         {error && <Message variant='danger'>{message}</Message>}
         {product && (
           <Row>
-            <Col className='text-center'>
-              <Image src={product.image} />
-              {/* <h5>Video Review</h5> */}
+            <Col className='text-center' xs={12} lg={6}>
+              <Image
+                id='product-details-img'
+                src={product.image}
+                className='m-2'
+              />
+              <br />
               {product.video && (
                 <iframe
                   id='video'
-                  className='mt-4'
+                  className='m-2'
                   width='560'
                   height='315'
                   src={product.video}
@@ -53,10 +57,10 @@ const ProductDetails = () => {
                 ></iframe>
               )}
             </Col>
-            <Col>
-              <h1>${product.price}</h1>
+            <Col className='text-center' xs={12} lg={6}>
+              <h3>${product.price}</h3>
               <br />
-              <h4>{product.desc}</h4>
+              <h5>{product.desc}</h5>
               <br />
               {product.review && (
                 <>
