@@ -79,7 +79,7 @@ const ProductForm = ({
   const submitHandler = e => {
     e.preventDefault()
 
-    if (!product) {
+    if (!product.name) {
       const data = {
         name,
         price,
@@ -121,7 +121,7 @@ const ProductForm = ({
       dispatch(reset())
       navigate('/')
     }
-    if (product && product !== null) {
+    if (product && product.name) {
       setFormData({
         name: product.name,
         link: product.link,
@@ -133,10 +133,6 @@ const ProductForm = ({
       })
       handleType(product.type)
       handleFeatured(product.featured)
-    }
-
-    if (!success) {
-      dispatch(getProducts())
     }
   }, [
     dispatch,
@@ -153,7 +149,7 @@ const ProductForm = ({
     setType(e.toString())
   }
   const handleFeatured = e => {
-    setFeatured(e)
+    setFeatured(e.toString())
   }
 
   return (
@@ -263,6 +259,7 @@ const ProductForm = ({
                   <Dropdown>
                     <DropdownButton
                       id='dropdown-basic-button'
+                      // title='Featured'
                       title={
                         featured.toString().charAt(0).toUpperCase() +
                         featured.toString().slice(1)
