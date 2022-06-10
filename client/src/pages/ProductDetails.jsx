@@ -38,8 +38,8 @@ const ProductDetails = () => {
           <Row>
             <Col className='text-center' xs={12} lg={6}>
               <Image
-                src={product.image}
                 id='product-details-img'
+                src={product.image}
                 className='m-2'
               />
               <br />
@@ -47,8 +47,8 @@ const ProductDetails = () => {
                 <iframe
                   id='video'
                   className='m-2'
-                  // width='560'
-                  // height='315'
+                  width='560'
+                  height='315'
                   src={product.video}
                   title='YouTube video player'
                   frameborder='0'

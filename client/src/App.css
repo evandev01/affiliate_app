@@ -121,18 +121,23 @@
 
 /*======PRODUCT DETAILS=======*/
 #product-details-img {
-  max-width: 80%;
+  max-width: 100%;
   height: auto;
 }
-/* @media only screen and(max-width: 767px) {
+@media only screen and (max-width: 991px) {
   #product-details-img {
-    max-height: 100px;
-    width: auto;
+    max-width: 60%;
+    height: auto;
   }
-} */
-
+}
 #video {
   max-width: 100%;
+}
+@media only screen and (max-width: 991px) {
+  #video {
+    max-width: 60%;
+    max-height: 20%;
+  }
 }
 
 #details-text {
