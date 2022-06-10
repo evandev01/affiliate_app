@@ -89,7 +89,7 @@ const ProductEdit = () => {
         (errorProduct && <Message variant='danger'>{message}</Message>)
       )}
       <ProductForm
-        product={product ? product : null}
+        product={product && product}
         onImageChange={imageChangeHandler}
         url={url}
         setUrl={setUrl}
