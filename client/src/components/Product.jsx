@@ -35,24 +35,25 @@ const Product = ({ product, index, user, loading, error, message }) => {
 
             <Card.Body className='text-center'>
               <Card.Text style={{ color: 'black' }}>{product.name}</Card.Text>
-              <Card.Title style={{ color: 'black' }}>
+              <Card.Title id='product-title' style={{ color: 'black' }}>
                 <strong>{product.price ? `$${product.price}` : '$0.00'}</strong>
               </Card.Title>
               <Link
-                className='card-link p-2'
-                style={{ textDecoration: 'none' }}
+                id='details-link'
+                className='card-link p-2 btn btn-primary'
                 to={`/product/${product._id}`}
               >
-                View Details
+                Details
               </Link>
               <br />
               <a
-                style={{ textDecoration: 'none' }}
-                className='card-link p-2'
-                // style={{ fontSize: 'medium' }}
+                id='amazon-link'
+                className='card-link p-2 mt-2 btn btn-primary'
                 href={product.link}
+                target='_blank'
+                rel='noreferrer noopener'
               >
-                View on Amazon
+                Amazon
               </a>
             </Card.Body>
             {user && user.isAdmin && (
